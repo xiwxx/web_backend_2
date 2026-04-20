@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html {
+            font-size: 10px;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        h2 {
+            font-size: 2rem;
+        }
+        p {
+            font-size: 1.4rem;
+        }
+        img {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Лаб. №2 Аппаратно-программные средства Web, Базалеева Карина 22/2</h1>
+
+    <h2>Подключимся к удаленному серверу с помощью команды ssh</h2>
+
+    <img src="telnet_screens/1.png">
+
+
+    <h2>Скопируем файлы, предварительно загруженные на удаленный git-репозиторий, с помощью команды git clone</h2>
+
+
+    <img src="telnet_screens/2.png">
+
+    <h2>
+        С помощью утилиты telnet localhost 80 подключаемся к серверу localhost с помощью telnet соединения
+    </h2>
+    <h2>
+        Войдя в режим ввода команд telnet, вводим команду <i>GET /index.php HTTP/1.0</i>
+    </h2>
+
+    <img src="telnet_screens/3.png">
+
+    <h2>
+        Далее скопируем и вставим команду с набором заголовков для получения содержимого файла <i>index.php</i> <br>
+        GET /web_backend_2/index.php HTTP/1.1 <br>
+        Host: u82813@kubsu-dev.ru
+    </h2>
+
+    <img src="telnet_screens/4.png">
+
+    <h2>
+        HEAD /web_backend_2/file.tar.gz HTTP/1.1 <br>
+        Host: u82813@kubsu-dev.ru <br>
+        Connection: close
+
+        <br>
+
+        HEAD-запрос запрашивает метаданные ресурса (заголовки) без передачи тела ответа 
+    </h2>
+
+    <img src="telnet_screens/5.png">
+
+    <h2>
+        GET /web_backend_2/image.png HTTP/1.1 <br>
+        Host: u82813@kubsu-dev.ru <br>
+        Connection: close
+        <br>
+        В поле Content-Type можно узнать медиатип запрашиваемого ресурса
+    </h2>
+
+    <img src="telnet_screens/6.png">
+
+    <h2>
+        Далее обратимся к index.php с помощью запроса POST со следующими заголовками: <br> 
+        POST /web_backend_2/index.php HTTP/1.1 <br>
+        Host: u82813@kubsu-dev.ru <br>
+        Content-Type: application/x-www-form-urlencoded <br>
+        Content-Length: 13 <br>
+        Connection: close <br> <br>
+        comment=helloworld
+    </h2>
+
+    <img src="telnet_screens/7.png">
+
+    <h2>
+        GET /web_backend_2/file.tar.gz HTTP/1.1 <br>
+        Host: u82813@kubsu-dev.ru <br>
+        Range: bytes=0-99 <br>
+        Connection: close
+        <br>
+        В результате выполнения данной команды будет выведена часть содержимого запрашиваемого файла file.tar.gz 
+    </h2>
+
+    <img src="telnet_screens/8.png">
+
+    <h2>
+        Аналогично, узнаем кодировку запрашиваемого ресурса из поля Content-Type
+    </h2>
+    <img src="telnet_screens/9.png">
+        
+    <p>Далее инициализируем удаленный репозиторий и отправляем сверстанный сайт</p>
+
+
+</body>
+
+</html>
