@@ -1,117 +1,163 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Лабораторная работа</title>
     <style>
-        html {
-            font-size: 10px;
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #212529;
+            --text-muted: #6c757d;
+            --accent: #007bff;
+            --border-color: #dee2e6;
         }
-        h1 {
-            font-size: 3rem;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
         }
-        h2 {
-            font-size: 2rem;
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
         }
-        p {
-            font-size: 1.4rem;
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
-        img {
-            margin-bottom: 50px;
+
+        h1 { margin: 0; font-size: 24px; color: var(--accent); }
+        h2 { margin: 10px 0 0; font-size: 20px; font-weight: 500; }
+
+        .info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .info a { color: var(--accent); text-decoration: none; }
+        .info a:hover { text-decoration: underline; }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h3 {
+            font-size: 18px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .screenshot {
+            width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9em;
         }
     </style>
 </head>
-
 <body>
-    <h1>Лаб. №2 Аппаратно-программные средства Web, Базалеева Карина 22/2</h1>
 
-    <h2>Подключимся к удаленному серверу с помощью команды ssh</h2>
-
-    <img src="telnet_screens/1.png">
-
-
-    <h2>Скопируем файлы, предварительно загруженные на удаленный git-репозиторий, с помощью команды git clone</h2>
+<div class="container">
+    <header>
+        <h1>Лабораторная работа №2</h1>
+        <h2>Базалеева Карина</h2>
+    </header>
 
 
-    <img src="telnet_screens/2.png">
 
-    <h2>
-        С помощью утилиты telnet localhost 80 подключаемся к серверу localhost с помощью telnet соединения
-    </h2>
-    <h2>
-        Войдя в режим ввода команд telnet, вводим команду <i>GET /index.php HTTP/1.0</i>
-    </h2>
+    <!-- Задание 0 -->
+    <div class="section">
+        <h3>0. Развертывание ресурсов</h3>
+        <p>Файлы проекта (скрипты, изображения, архивы) загружены на удаленный сервер. Проверка доступности подтвердила корректность конфигурации окружения.</p>
+        <img src="01.jpg" alt="Скриншот 0-1" class="screenshot">
+        <img src="02.jpg" alt="Скриншот 0-2" class="screenshot">
+    </div>
 
-    <img src="telnet_screens/3.png">
+    <!-- Задание 1 -->
+    <div class="section">
+        <h3>1. Запрос главной страницы (HTTP/1.0)</h3>
+        <p>Выполнен базовый GET-запрос. Использован протокол версии 1.0 через терминальное соединение.</p>
+        <img src="1.png" alt="Скриншот 1" class="screenshot">
+    </div>
 
-    <h2>
-        Далее скопируем и вставим команду с набором заголовков для получения содержимого файла <i>index.php</i> <br>
-        GET /web_backend_2/index.php HTTP/1.1 <br>
-        Host: u82813@kubsu-dev.ru
-    </h2>
+    <!-- Задание 2 -->
+    <div class="section">
+        <h3>2. Запрос index.php (HTTP/1.1)</h3>
+        <p>Запрос по протоколу HTTP/1.1. В заголовках обязательно передан Host для идентификации ресурса.</p>
+        <img src="2.png" alt="Скриншот 2" class="screenshot">
+    </div>
 
-    <img src="telnet_screens/4.png">
+    <!-- Задание 3 -->
+    <div class="section">
+        <h3>3. Получение размера архива</h3>
+        <p>С помощью метода HEAD определен размер файла file.tar.gz (поле Content-Length) без загрузки самого тела файла.</p>
+        <img src="3.png" alt="Скриншот 3" class="screenshot">
+    </div>
 
-    <h2>
-        HEAD /web_backend_2/file.tar.gz HTTP/1.1 <br>
-        Host: u82813@kubsu-dev.ru <br>
-        Connection: close
+    <!-- Задание 4 -->
+    <div class="section">
+        <h3>4. Проверка типа изображения</h3>
+        <p>Метод HEAD позволил определить MIME-тип файла image.png через заголовок Content-Type.</p>
+        <img src="4.png" alt="Скриншот 4" class="screenshot">
+    </div>
 
-        <br>
+    <!-- Задание 5 -->
+    <div class="section">
+        <h3>5. POST-запрос с данными</h3>
+        <p>Имитация отправки формы. Передан текстовый комментарий, сервер успешно принял и подтвердил обработку данных.</p>
+        <img src="5.png" alt="Скриншот 5" class="screenshot">
+    </div>
 
-        HEAD-запрос запрашивает метаданные ресурса (заголовки) без передачи тела ответа 
-    </h2>
+    <!-- Задание 6 -->
+    <div class="section">
+        <h3>6. Частичный запрос контента (Range)</h3>
+        <p>Запрошены первые 100 байт архива. Использован заголовок Range, сервер вернул статус 206 Partial Content.</p>
+        <img src="6.png" alt="Скриншот 6" class="screenshot">
+    </div>
 
-    <img src="telnet_screens/5.png">
+    <!-- Задание 7 -->
+    <div class="section">
+        <h3>7. Определение кодировки документа</h3>
+        <p>Анализ заголовков ответа для поиска параметра charset, определяющего кодировку страницы.</p>
+        <img src="7.png" alt="Скриншот 7" class="screenshot">
+    </div>
 
-    <h2>
-        GET /web_backend_2/image.png HTTP/1.1 <br>
-        Host: u82813@kubsu-dev.ru <br>
-        Connection: close
-        <br>
-        В поле Content-Type можно узнать медиатип запрашиваемого ресурса
-    </h2>
-
-    <img src="telnet_screens/6.png">
-
-    <h2>
-        Далее обратимся к index.php с помощью запроса POST со следующими заголовками: <br> 
-        POST /web_backend_2/index.php HTTP/1.1 <br>
-        Host: u82813@kubsu-dev.ru <br>
-        Content-Type: application/x-www-form-urlencoded <br>
-        Content-Length: 13 <br>
-        Connection: close <br> <br>
-        comment=helloworld
-    </h2>
-
-    <img src="telnet_screens/7.png">
-
-    <h2>
-        GET /web_backend_2/file.tar.gz HTTP/1.1 <br>
-        Host: u82813@kubsu-dev.ru <br>
-        Range: bytes=0-99 <br>
-        Connection: close
-        <br>
-        В результате выполнения данной команды будет выведена часть содержимого запрашиваемого файла file.tar.gz 
-    </h2>
-
-    <img src="telnet_screens/8.png">
-
-    <h2>
-        Аналогично, узнаем кодировку запрашиваемого ресурса из поля Content-Type
-    </h2>
-    <img src="telnet_screens/9.png">
-        
-    <p>Далее инициализируем удаленный репозиторий и отправляем сверстанный сайт</p>
-
-    <h2>С помощью команды git clone копируем верстку на удаленный сервер</h2>
-
-    <img src="telnet_screens/10.png">
+    <footer>
+        <p>ПИ 22/2 2026.</p>
+    </footer>
+</div>
 
 </body>
-
 </html>
